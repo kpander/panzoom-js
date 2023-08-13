@@ -1,0 +1,41 @@
+{
+  "name": "@kpander/panzoom-js",
+  "version": "1.0.0",
+  "description": "Vanilla JS library to pan and zoom CSS background images",
+  "homepage": "https://github.com/kpander/panzoom-js",
+  "author": {
+    "name": "Kendall Anderson",
+    "email": "<kpander@invisiblethreads.com>"
+  },
+  "main": "index.js",
+  "files": [
+    "dist/PanZoom.js",
+    "dist/PanZoom.UI.Drag.js",
+    "README.md",
+    "CHANGELOG.md"
+  ],
+  "scripts": {
+    "build": "node build.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kpander/panzoom-js.git"
+  },
+  "keywords": [
+    "pan",
+    "zoom",
+    "vanillajs",
+    "background-image"
+  ],
+  "license": "MIT",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com"
+  },
+  "bugs": {
+    "url": "https://github.com/kpander/panzoom-js/issues"
+  },
+  "devDependencies": {
+    "uglify-js": "^3.17.4"
+  }
+}
