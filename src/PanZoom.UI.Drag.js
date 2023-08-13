@@ -7,8 +7,6 @@
  * object instance.
  *
  * Click-and-drag to pan.
- * Double-click to zoom in.
- * Double-click + SHIFT key to zoom out.
  *
  * Works for both mouse and touch inputs.
  */
