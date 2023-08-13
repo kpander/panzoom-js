@@ -5,20 +5,20 @@
  */
 
 class PanZoom {
-  constructor(el, config = {}) {
+  constructor(el, options = {}) {
     this.limits = {
-      zoom: { min: config.minZoom || .5, max: config.maxZoom || 5 },
-      x: { min: config.minX || 0, max: config.maxX || 100 },
-      y: { min: config.minY || 0, max: config.maxY || 100 },
+      zoom: { min: options.minZoom || .5, max: options.maxZoom || 5 },
+      x: { min: options.minX || 0, max: options.maxX || 100 },
+      y: { min: options.minY || 0, max: options.maxY || 100 },
     };
 
     this.state = {
       initial: {
-        zoom: config.initialZoom || 1,
-        x: config.initialX,
-        y: config.initialY,
+        zoom: options.initialZoom || 1,
+        x: options.initialX,
+        y: options.initialY,
       },
-      zoom: config.initialZoom || 1,
+      zoom: options.initialZoom || 1,
       x: null,
       y: null,
     };
@@ -28,13 +28,13 @@ class PanZoom {
     // Initialize once we've loaded the first background image.
     const me = this;
     const img = new Image();
-    img.src = PanZoomUtil.getBgUrl(this.el);
+    img.src = this._getBgUrl(this.el);
     img.onload = function() {
-      me.init(img.width, img.height);
+      me._init(img.width, img.height);
     };
   }
 
-  init(imgWidth, imgHeight) {
+  _init(imgWidth, imgHeight) {
     // Image 1:1 size.
     this.state.img = {
       w: imgWidth,
@@ -126,9 +126,9 @@ class PanZoom {
     this.state.y = position.y;
     return this.update();
   }
-  panOffset(position = {}) {
-    this.state.x += position.x;
-    this.state.y += position.y;
+  panOffset(offset = {}) {
+    this.state.x += offset.x;
+    this.state.y += offset.y;
     return this.update();
   }
 
@@ -140,11 +140,11 @@ class PanZoom {
   panOffsetLive(offset = {}) {
     const limits = this.limits;
 
-    const newX = PanZoomUtil.clamp(this.state.x + offset.x, limits.x.min, limits.x.max);
-    const newY = PanZoomUtil.clamp(this.state.y + offset.y, limits.y.min, limits.y.max);
+    const newX = this._clamp(this.state.x + offset.x, limits.x.min, limits.x.max);
+    const newY = this._clamp(this.state.y + offset.y, limits.y.min, limits.y.max);
 
     this.el.style.backgroundPosition = `${newX}px ${newY}px`;
-    return { x: newX, y: newY };
+    return { zoom: this.state.zoom, x: newX, y: newY };
   }
 
   /**
@@ -172,7 +172,7 @@ class PanZoom {
     const limits = this.limits;
 
     [ "zoom", "x", "y" ].forEach(key => {
-      this.state[key] = PanZoomUtil.clamp(this.state[key], limits[key].min, limits[key].max);
+      this.state[key] = this._clamp(this.state[key], limits[key].min, limits[key].max);
     });
 
     this.el.style.backgroundSize = `${this.state.img.w * this.state.zoom}px`;
@@ -181,23 +181,19 @@ class PanZoom {
     return this.state;
   }
 
-}
-
-class PanZoomUtil {
-  constructor() {}
-
-  static clamp(num, min, max) {
+  _clamp(num, min, max) {
     return Math.min(Math.max(num, min), max);
   }
 
   /**
    * Get the URL from a CSS background-image rule on an element.
    */
-  static getBgUrl(el) {
+  _getBgUrl(el) {
     return window
       .getComputedStyle(el)
       .backgroundImage
       .replace(/"/g, "")
       .replace(/url\(|\)$/ig, "");
   }
+
 }
