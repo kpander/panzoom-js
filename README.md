@@ -505,6 +505,17 @@ $ npm publish
   - Multiple CSS backgrounds on the same element
     - @todo what happens in this case?
 
+# TODO
+
+  - Add a way to hook in to state changes
+    - Maybe allow providing a custom function that runs when state changes
+    - Maybe broadcast events when state changes
+  - Add documentation for implementing animation transitions on the background element
+    - For panning and zooming
+    - For disabling these in the Drag class
+  - Implement double-click zoom in/out as an independent UI class (similar to Drag)
+  - Create demo page in Github pages
+
 
 # Maintainer
 
