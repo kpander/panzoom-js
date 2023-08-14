@@ -1,6 +1,6 @@
 {
   "name": "@kpander/panzoom-js",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Vanilla JS library to pan and zoom CSS background images",
   "homepage": "https://github.com/kpander/panzoom-js",
   "author": {
@@ -36,6 +36,6 @@
     "url": "https://github.com/kpander/panzoom-js/issues"
   },
   "devDependencies": {
-    "uglify-js": "^3.17.4"
+    "@kpander/packager-js": "^1.0.1"
   }
 }
