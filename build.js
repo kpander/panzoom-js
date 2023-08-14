@@ -2,10 +2,9 @@
  * Create ./dist/ versions.
  */
 
-const pjson = require("./package.json");
-const uglify = require("uglify-js");
-const build = require("./build/Build")(pjson, uglify);
+const packager = require("@kpander/packager-js");
 
-build.processFile("src/PanZoom.js", "dist/PanZoom.js");
-build.processFile("src/PanZoom.UI.Drag.js", "dist/PanZoom.UI.Drag.js");
+packager.setPackageJson(require("./package.json"));
+packager.process("src/PanZoom.js", "dist/PanZoom.js");
+packager.process("src/PanZoom.UI.Drag.js", "dist/PanZoom.UI.Drag.js");
 
