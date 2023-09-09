@@ -9,6 +9,7 @@ Vanilla JS library to pan and zoom CSS background images.
   - [API](#api)
   - [Developers](#developers)
 
+**Note: Consider this primarily as a _proof of concept_ library, to test the idea of panning/zooming via CSS `background-size` and `background-position`. This is not a robust, fully-featured or tested library. There are very likely better ways to achieve this (transforms!).**
 
 # Features
 
